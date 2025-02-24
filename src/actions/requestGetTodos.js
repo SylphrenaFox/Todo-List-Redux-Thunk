@@ -6,7 +6,6 @@ export const requestGetTodos = () => {
 		fetch('http://localhost:3003/todos')
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('Fetched todos:', data);
 				dispatch(setTodos(data));
 			})
 			.finally(() => dispatch(setIsLoading(false)));

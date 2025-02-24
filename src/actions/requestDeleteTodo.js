@@ -1,4 +1,5 @@
-import { setTodos, setIsDeleting } from './actions';
+import { setIsDeleting } from './actions';
+import { requestGetTodos } from './requestGetTodos';
 
 export const requestDeleteTodo = (id) => {
 	return (dispatch) => {
@@ -6,11 +7,7 @@ export const requestDeleteTodo = (id) => {
 		fetch(`http://localhost:3003/todos/${id}`, {
 			method: 'DELETE',
 		})
-			.then(() =>
-				dispatch(
-					setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)),
-				),
-			)
+			.then(() => dispatch(requestGetTodos()))
 			.finally(() => dispatch(setIsDeleting(false)));
 	};
 };

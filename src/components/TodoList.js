@@ -1,6 +1,6 @@
 import styles from '../App.module.css';
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	selectIsLoading,
 	selectTodos,
@@ -22,7 +22,7 @@ export const TodoList = () => {
 
 	useEffect(() => {
 		dispatch(requestGetTodos());
-	}, []);
+	}, [dispatch]);
 
 	const filteredTodos = Array.isArray(todos)
 		? todos.filter((todo) =>

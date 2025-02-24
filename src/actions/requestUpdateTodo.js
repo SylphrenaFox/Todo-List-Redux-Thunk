@@ -1,4 +1,5 @@
-import { setTodos, setIsUpdating } from './actions';
+import { requestGetTodos } from './requestGetTodos';
+import { setIsUpdating } from './actions';
 
 export const requestUpdateTodo = (todoId, isCompleted) => {
 	return (dispatch) => {
@@ -14,13 +15,7 @@ export const requestUpdateTodo = (todoId, isCompleted) => {
 			.then((rawResponse) => rawResponse.json())
 
 			.then((updatedTodo) => {
-				dispatch(
-					setTodos((prevTodos) =>
-						prevTodos.map((todo) =>
-							todo.id === updatedTodo.id ? updatedTodo : todo,
-						),
-					),
-				);
+				dispatch(requestGetTodos());
 			})
 			.finally(() => dispatch(setIsUpdating(false)));
 	};

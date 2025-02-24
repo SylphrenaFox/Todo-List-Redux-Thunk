@@ -1,4 +1,5 @@
-import { setIsCreating, setTodos } from './actions';
+import { setIsCreating } from './actions';
+import { requestGetTodos } from './requestGetTodos';
 
 export const requestAddTodo = (todoItem) => {
 	return (dispatch) => {
@@ -14,7 +15,7 @@ export const requestAddTodo = (todoItem) => {
 		})
 			.then((rawResponse) => rawResponse.json())
 			.then((newTodo) => {
-				dispatch(setTodos((prevTodos) => [...prevTodos, newTodo]));
+				dispatch(requestGetTodos());
 			})
 			.finally(() => dispatch(setIsCreating(false)));
 	};
